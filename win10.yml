@@ -1,0 +1,53 @@
+# note skibidi code tạo bởi chillmusic-o7v
+
+version: "3.7"
+
+services:
+  win10: 
+    image: dockurr/windows
+    container_name: windows
+    tty: true 
+    privileged: true
+    restart: "unless-stopped"
+    user: $(id -u):$(id -g)
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8007:8006"
+      - "8008:8006"
+    environment:
+      USERNAME: "Code-chillmusic"
+      PASSWORD: "admin123"
+      TZ: "Asia/Ho_Chi_Minh" 
+      VERSION: "10"
+      RAM_SIZE: "12G"
+      CPU_CORES: "6" 
+      DISK_SIZE: "100G"
+      DISK2_SIZE: "80G"
+      SCREEN_RESOLUTION: "1280x720"
+      REBUILD: "false"
+      PULSE_SERVER: "/run/user/$(id -u)/pulse/native" 
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - win_data:/storage
+      - /run/user/$(id -u)/pulse/native:/run/user/$(id -u)/pulse/native
+    
+    command: [
+      "sh", 
+      "-c", 
+      "for i in $(seq 1 30); do echo 'NOTE: Code làm bởi chillmusic-o7v - Console Spam ($i/30)' > /proc/1/fd/1; done && exec /usr/local/bin/entrypoint.sh" 
+    ]
+
+volumes:
+  win_data:
+    driver: local
+
+#note bật code bằng sudo docker compose -f "win10.yml" up -d
+#note xem log bằng docker logs windows
+#note code tạo bởi: chillmusic-o7v 
+#note không sửa đổi code hay đi bán!
