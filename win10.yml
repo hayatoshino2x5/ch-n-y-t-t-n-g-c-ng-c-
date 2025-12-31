@@ -1,7 +1,5 @@
 # note skibidi code tạo bởi chillmusic-o7v
 
-version: "3.7"
-
 services:
   win10: 
     image: dockurr/windows
@@ -9,7 +7,6 @@ services:
     tty: true 
     privileged: true
     restart: "unless-stopped"
-    user: $(id -u):$(id -g)
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -37,11 +34,6 @@ services:
       - win_data:/storage
       - /run/user/$(id -u)/pulse/native:/run/user/$(id -u)/pulse/native
     
-    command: [
-      "sh", 
-      "-c", 
-      "for i in $(seq 1 30); do echo 'NOTE: Code làm bởi chillmusic-o7v - Console Spam ($i/30)' > /proc/1/fd/1; done && exec /usr/local/bin/entrypoint.sh" 
-    ]
 
 volumes:
   win_data:
